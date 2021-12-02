@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
-        'name' => 'API',
+        'name' => 'PLUS API',
         'description' => 'Base API Plugin for OctoberCMS'
     ]
 ];
