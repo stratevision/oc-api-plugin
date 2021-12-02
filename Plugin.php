@@ -1,4 +1,4 @@
-<?php namespace Octobro\API;
+<?php namespace Sv\API;
 
 use App;
 use System\Classes\PluginBase;
@@ -18,6 +18,6 @@ class Plugin extends PluginBase
 
     public function register()
     {
-        $this->registerConsoleCommand('octobro.api.transformer', 'Octobro\API\Console\CreateTransformer');
+        $this->registerConsoleCommand('sv.api.transformer', 'Sv\API\Console\CreateTransformer');
     }
 }

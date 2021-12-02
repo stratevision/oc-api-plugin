@@ -1,7 +1,7 @@
 <?php namespace {{studly_author}}\{{studly_plugin}}\Transformers;
 
 use {{model}};
-use Octobro\API\Classes\Transformer;
+use Sv\API\Classes\Transformer;
 
 /**
  * {{name}}Transformer for {{model}}

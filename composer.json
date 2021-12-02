@@ -1,5 +1,5 @@
 {
-    "name": "octobro/api",
+    "name": "sv/api-plugin",
     "description": "Base API Plugin for OctoberCMS.",
     "type": "october-plugin",
     "keywords": ["october", "api"],

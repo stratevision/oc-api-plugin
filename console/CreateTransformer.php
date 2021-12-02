@@ -1,4 +1,4 @@
-<?php namespace Octobro\API\Console;
+<?php namespace Sv\API\Console;
 
 use October\Rain\Scaffold\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -11,7 +11,7 @@ class CreateTransformer extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'octobro:transformer';
+    protected $name = 'sv:transformer';
 
     /**
      * The console command description.

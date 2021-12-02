@@ -12,7 +12,7 @@ It's a plugin for OctoberCMS for you that want to create an extensible and easy 
 ## Installation
 
 
-1. [**Download**](https://github.com/octobroid/oc-api-plugin/archive/master.zip) this plugin and put to plugins directory (`plugins/octobro/api`).
+1. [**Download**](https://github.com/octobroid/oc-api-plugin/archive/master.zip) this plugin and put to plugins directory (`plugins/sv/api`).
 2. Run `composer update` on your project root directory.
 
 > Tips: if you want to follow this plugin, you can use this plugin as a submodule on your git project.
@@ -27,13 +27,13 @@ This plugin is a base for your application API. You should create your "API" plu
 php artisan create:plugin Foo.Bar
 ```
 
-In your `Plugin.php` file, we recommend you to put `Octobro.API` as plugin dependency.
+In your `Plugin.php` file, we recommend you to put `Sv.API` as plugin dependency.
 
 ```php
 class Plugin extends PluginBase
 {
-	public $require = ['Octobro.API'];
-	
+	public $require = ['Sv.API'];
+
 ```
 
 ### Define the REST API Routes
@@ -46,11 +46,11 @@ Route::group([
 	'namespace'  => 'Foo\Bar\ApiControllers',
 	'middleware' => 'cors'
 ], function() {
-	
-	//	
+
+	//
 	// Your public resources should be here
 	//
-	
+
 });
 ```
 
@@ -74,7 +74,7 @@ Create the `plugins/foo/bar/apicontrollers/Products.php` file.
 ```php
 <?php namespace Foo\Bar\ApiControllers;
 
-use Octobro\API\Classes\ApiController;
+use Sv\API\Classes\ApiController;
 use Foo\Bar\Models\Product;
 use Foo\Bar\Transformers\ProductTransformer;
 
@@ -106,7 +106,7 @@ For example in this case, we create the `plugins/foo/bar/transformers/ProductTra
 ```php
 <?php namespace Foo\Bar\Transformers;
 
-use Octobro\API\Classes\Transformer;
+use Sv\API\Classes\Transformer;
 use Foo\Bar\Models\Product;
 
 class ProductTransformer extends Transformer
@@ -116,7 +116,7 @@ class ProductTransformer extends Transformer
     	'categories',
     	'brand',
     ];
-    
+
     // Related transformer that will be included by default
     public $defaultIncludes = [
     	'categories',
@@ -136,12 +136,12 @@ class ProductTransformer extends Transformer
             'created_at'  => date($product->created_at),
         ];
     }
-    
+
     public function includeCategories(Product $product)
     {
         return $this->collection($product->categories, new CategoryTransformer);
     }
-    
+
     public function includeBrand(Product $product)
     {
         return $this->item($product->brand, new BrandTransformer);
@@ -154,10 +154,10 @@ class ProductTransformer extends Transformer
 
 You can also create a transformer using the scaffolding commands to speed up your development process.
 
-Use `octobro:transformer` command to create a new transformer. The first parameter specifies the author and plugin name. The second parameter specifies the model name. Note that the model name must be written with its namespace and the backward slash used must be doubled.
+Use `sv:transformer` command to create a new transformer. The first parameter specifies the author and plugin name. The second parameter specifies the model name. Note that the model name must be written with its namespace and the backward slash used must be doubled.
 
 ```
-php artisan octobro:transformer Foo.Bar Foo\\Bar\\Models\\Product
+php artisan sv:transformer Foo.Bar Foo\\Bar\\Models\\Product
 ```
 
 That's it! You're successfully created the API in easy way! There are ton of features that very usable for your scalable and extensible application.
@@ -261,12 +261,12 @@ By default this plugin is using `DataArraySerializer` from [Fractal](https://fra
 To change the serializer you can extend it on your own `Plugin.php`.
 
 ```php
-use Octobro\API\Classes\ApiController;
+use Sv\API\Classes\ApiController;
 use League\Fractal\Serializer\JsonApiSerializer;
 
 class Plugin extends PluginBase
 {
-    public $require = ['Octobro.API'];
+    public $require = ['Sv.API'];
 
     public function boot()
     {
@@ -304,11 +304,11 @@ ProductTransformer::extend(function($transformer) {
     $transformer->addField('tags', function($product) {
         return $product->tags->toArray();
     });
-    
+
     // Add field based on object attribute
     // In this case, if the Product has tax attribute ($product->tax)
     $transformer->addField('tax');
-    
+
     // Wanna add more fields based on attributes?
     // You can put it all together
     $transformer->addFields(['url', 'color', 'is_recommended']);
@@ -327,11 +327,11 @@ ProductTransformer::extend(function($transformer) {
     $transformer->addInclude('reviews', function($product) use ($transfomer) {
         return $transformer->collection($product->reviews, new ReviewTransfomer);
     });
-    
+
     // Or if it has single relation
     $transformer->addInclude('brand', function($product) use ($transfomer) {
         return $transformer->item($product->brand, new BrandTransformer);
-    });    
+    });
 });
 ```
 

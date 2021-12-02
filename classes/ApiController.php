@@ -1,4 +1,4 @@
-<?php namespace Octobro\API\Classes;
+<?php namespace Sv\API\Classes;
 
 use App;
 use Input;

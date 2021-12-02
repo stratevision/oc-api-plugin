@@ -1,6 +1,6 @@
 plugin:
-    name: 'octobro.api::lang.plugin.name'
-    description: 'octobro.api::lang.plugin.description'
-    author: Octobro
+    name: 'sv.api::lang.plugin.name'
+    description: 'sv.api::lang.plugin.description'
+    author: Sv
     icon: oc-icon-code
     homepage: ''
